@@ -23,7 +23,7 @@
         <th>email</th>
         <th>Actions</th>
     </tr>
-    <c:forEach var="student" items="${Studentsbycountry}">
+    <c:forEach var="student" items="${StudentsbyName}">
         <tr>
             <td><c:out value="${student.g()}"/></td>
             <td><c:out value="${student.getName()}"/></td>

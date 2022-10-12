@@ -82,13 +82,13 @@ public class StudentSevlet extends HttpServlet {
             throws SQLException, IOException, ServletException {
         List<Student> listStudent = studentDAO.selectAllStudents();
         request.setAttribute("listStudent", listStudent);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Student/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("student/list.jsp");
         dispatcher.forward(request, response);
     }
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Student/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("student/create.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -96,7 +96,7 @@ public class StudentSevlet extends HttpServlet {
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         Student existingStudent = studentDAO.selectStudent(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Student/edit.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("student/edit.jsp");
         request.setAttribute("Student", existingStudent);
         dispatcher.forward(request, response);
 
@@ -116,7 +116,7 @@ public class StudentSevlet extends HttpServlet {
         Student newStudent = new Student(name,dateofBirth,address,phoneNumber, email);
         // StudentDAO.insertStudent(newStudent);
         studentDAO.insertStudent(newStudent);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Student/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("student/create.jsp");
         dispatcher.forward(request, response);
 
         //StudentDAO.insertStudent(newStudent);
@@ -134,7 +134,7 @@ public class StudentSevlet extends HttpServlet {
 
         Student book = new Student(id, name,dateofBirth,address,phoneNumber, email);
         studentDAO.updateStudent(book);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Student/edit.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("student/edit.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -145,22 +145,22 @@ public class StudentSevlet extends HttpServlet {
 
         List<Student> listStudent = studentDAO.selectAllStudents();
         request.setAttribute("listStudent", listStudent);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Student/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("student/list.jsp");
         dispatcher.forward(request, response);
     }
     private void search(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         String name= request.getParameter("name");
         List<Student> listStudent = studentDAO.selectStudentsByName(name);
-        request.setAttribute("Studentsbycountry", listStudent);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Student/find.jsp");
+        request.setAttribute("StudentsbyName", listStudent);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("student/find.jsp");
         dispatcher.forward(request, response);
     }
     private void sort(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         List<Student> listStudent = studentDAO.sortByName();
         request.setAttribute("listStudent", listStudent);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Student/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("student/list.jsp");
         dispatcher.forward(request, response);
     }
 }
